@@ -1,0 +1,8 @@
+<div class="page-header">
+	<h1>Reimbursements</h1>
+</div>
+<% if signed_in? %>
+<%= render 'pages/signed_in_home' %>
+<% else %>
+<%= render 'pages/not_signed_in_home' %>
+<% end %>

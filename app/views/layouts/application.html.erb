@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Imp</title>
+  <title> <%= title %> </title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+<%= render 'layouts/header' %>
+<div class="container">
+	<div class="content">
+		<%= render(:partial => 'layouts/flash', :locals => {:flash => flash}) unless flash.empty? %>
+		<%= yield %>
+		<%= debug(params) if Rails.env.development? %>
+	</div>
+</div>
 </body>
 </html>

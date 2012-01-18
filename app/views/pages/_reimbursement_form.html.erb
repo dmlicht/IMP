@@ -1,0 +1,34 @@
+<%= form_for @reimbursement do |f| %>
+	<fieldset>
+	<div class="field clearfix">
+		<%= f.label :title %>
+		<div class="input">
+			<%= f.text_field :title, :class => "xlarge" %>
+		</div>
+	</div>
+
+	<div class="field clearfix">
+		<%= f.label :location %>
+		<div class="input">
+			<%= f.text_field :location, :class => "xlarge" %>
+		</div>
+	</div>
+
+	<div class="field clearfix">
+		<%= f.label :quantity %>
+		<div class="input">
+			<%= f.text_field :quantity, :class => "xlarge" %>
+		</div>
+	</div>
+
+	<div class="field clearfix">
+		<%= f.label :description %>
+		<div class="input">
+			<%= f.text_area :description, :class => "xlarge", :rows => 3 %>
+		</div>
+	</div>
+	</fieldset>
+	<div class="actions">
+		<%= f.submit "Submit" %>
+	</div>
+<% end %>
