@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
-gem 'sqlite3'
 gem 'jquery-rails'
 gem 'omniauth-google-oauth2'
 gem 'thin'
@@ -20,6 +19,7 @@ group :development do
   gem 'rspec-rails'
   gem 'annotate', "~> 2.4.1.beta1"
   gem 'faker'
+  gem 'sqlite3'
 end
 
 group :test do
