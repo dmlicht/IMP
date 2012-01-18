@@ -4,6 +4,8 @@ gem 'rails', '3.1.1'
 gem 'sqlite3'
 gem 'jquery-rails'
 gem 'omniauth-google-oauth2'
+gem 'thin'
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -18,7 +20,6 @@ group :development do
   gem 'rspec-rails'
   gem 'annotate', "~> 2.4.1.beta1"
   gem 'faker'
-  gem 'thin'
 end
 
 group :test do
