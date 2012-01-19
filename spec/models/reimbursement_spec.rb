@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Reimbursement do
 	before(:each) do
+    @user = Factory(:user)
 		@attr = {
 			:title => "Ice Cream",
 			:location => "Ice Cream Shop",
@@ -11,32 +12,52 @@ describe Reimbursement do
 	end
   
   it "should be created given valid attributes" do
-  	Reimbursement.create!(@attr)
-  end 
+  	@user.reimbursements.create!(@attr)
+  end
+
+  describe "#user_id" do
+    it "should be present" do
+      Reimbursement.new(@attr).should_not be_valid
+    end
+  end
 
   describe "#title" do
   	it "should be present" do
-  		Reimbursement.new(@attr.merge(:title => "")).should_not be_valid
+  		@user.reimbursements.build(@attr.merge(:title => "")).should_not be_valid
   	end
   end
 
   describe "#location" do
   	it "should be present" do
-  		Reimbursement.new(@attr.merge(:location => "")).should_not be_valid
+  		@user.reimbursements.build(@attr.merge(:location => "")).should_not be_valid
   	end
   end
 
   describe "#quantity" do
   	it "should be present" do
-  		Reimbursement.new(@attr.merge(:quantity => "")).should_not be_valid
+  		@user.reimbursements.build(@attr.merge(:quantity => "")).should_not be_valid
   	end
   end
 
   describe "#description" do
   	it "should be present" do
-  		Reimbursement.new(@attr.merge(:description => "")).should_not be_valid
+  		@user.reimbursements.build(@attr.merge(:description => "")).should_not be_valid
   	end
   end	
+
+  describe '.user' do
+    before(:each) do
+      @reimbursement = @user.reimbursements.create!(@attr)
+    end
+
+    it "should be recognized" do
+      @reimbursement.should respond_to(:user)
+    end
+
+    it "should associate the correct user" do
+      @reimbursement.user_id.should == @user.id
+    end
+  end
 end
 # == Schema Information
 #

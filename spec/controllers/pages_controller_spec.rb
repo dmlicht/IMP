@@ -13,6 +13,25 @@ describe PagesController do
       get :home
       response.should have_selector(:title, :content => "IMP Reimbursements")
     end
+
+    context 'when not signed in' do
+      it "displays the sign in link" do
+        get :home
+        response.should have_selector('a', :content => "Sign In")
+      end
+    end
+
+    context 'when signed in' do
+      before(:each) do
+        @user = Factory(:user)
+        test_sign_in(@user)
+      end
+
+      it "displays the sign out link" do
+        get :home
+        response.should have_selector(:a, :content => "Sign Out")
+      end
+    end
   end
 
   describe "GET 'about'" do

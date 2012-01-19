@@ -1,12 +1,14 @@
 class Reimbursement < ActiveRecord::Base
 	attr_accessible :title, :location, :quantity, :description
 
+	default_scope :order => 'reimbursements.created_at DESC'
 	belongs_to :user
 	
 	validates :title, :presence => true
 	validates :location, :presence => true
 	validates :quantity, :presence => true
 	validates :description, :presence => true
+	validates :user_id, :presence => true
 end
 # == Schema Information
 #

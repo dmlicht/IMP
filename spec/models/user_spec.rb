@@ -81,10 +81,36 @@ describe User do
   end
 
   describe ".authenticate_with_salt" do
+    before(:each) do
+      @user = User.create!(@attr)
+    end
+
     context "given valid id and salt from cookie" do
+      it "returns a user" do
+        User.authenticate_with_salt(@user.id, @user.salt).should == @user
+      end
     end
 
     context "given invalid credentials" do
+      it "returns nil" do
+        User.authenticate_with_salt('13829389', '2178316716').should be_nil
+      end
+    end
+  end
+
+  describe ".reimbursements" do
+    before(:each) do
+      @user = User.create!(@attr)
+      @reim1 = Factory(:reimbursement, :user => @user, :created_at => 20.years.ago, :title => "murr")
+      @reim2 = Factory(:reimbursement, :user => @user, :created_at => 5.minutes.ago, :title => "aight")
+    end
+
+    it "is a working method" do
+      @user.should respond_to(:reimbursements)
+    end
+
+    it "returns reimbursements in the correct order" do
+      @user.reimbursements.should == [@reim2, @reim1]
     end
   end
 end
