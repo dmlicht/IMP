@@ -1,3 +1,4 @@
+#require 'rack/ssl'
 Imp::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -19,6 +20,8 @@ Imp::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+
+  #config.middleware.insert_before ActionDispatch::Cookies, Rack::SSL
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH

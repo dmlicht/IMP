@@ -1,4 +1,9 @@
 class ReimbursementsController < ApplicationController
+
+	def show
+		@reimbursement = Reimbursement.find(params[:id])
+	end
+	
   def create
   	@reimbursement = current_user.reimbursements.build(params[:reimbursement])
   	if @reimbursement.save

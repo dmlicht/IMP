@@ -1,3 +1,5 @@
+#require 'rack/ssl'
+
 Imp::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -27,4 +29,6 @@ Imp::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  #config.middleware.insert_before ActionDispatch::Cookies, Rack::SSL
 end

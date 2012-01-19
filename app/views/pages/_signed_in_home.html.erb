@@ -7,7 +7,7 @@
 		<h3> Open Reimbursements </h3>
 		<ul class="unstyled">
 			<% @reimbursements.each do |reimbursement| %>
-				<li><%= reimbursement.title %></li>
+				<li><%= link_to reimbursement.title, reimbursement %></li>
 			<% end %>
 		</ul>
 	</div>

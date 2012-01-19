@@ -3,14 +3,15 @@ Imp::Application.routes.draw do
   get "pages/about"
   get "pages/contact"
 
-  resources :reimbursements, :only => [:create, :update, :destroy]
+  resources :reimbursements, :only => [:show, :create, :update, :destroy]
+  resources :sessions, :only => [:create, :destroy]
 
   root :to => "pages#home"
   match '/contact' => 'pages#contact'
   match '/about' => 'pages#about'
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/auth/failure' => 'pages#home'
-  match '/signout' => 'sessions#destroy'
+  match '/signout', :to => 'sessions#destroy'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
